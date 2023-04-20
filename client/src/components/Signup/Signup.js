@@ -13,7 +13,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import { fecthData } from "../../utils/helperFunctions/helper"
 import { routes, userQueryCodes, menus } from "../../utils/enum"
 
-const Signup = ({ setMenu, setCategory, menu, setUser }) => {
+const Signup = ({ setMenu, setUser }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [username, setUsername] = useState("")
@@ -45,6 +45,12 @@ const Signup = ({ setMenu, setCategory, menu, setUser }) => {
 
   const handleOkay = () => {
     setMenu(menus.signin)
+  }
+
+  const handleEnterKey = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmit()
+    }
   }
 
   return (
@@ -90,6 +96,7 @@ const Signup = ({ setMenu, setCategory, menu, setUser }) => {
                     type="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    onKeyDown={handleEnterKey}
                     required
                   />
                 </Grid>
@@ -99,6 +106,7 @@ const Signup = ({ setMenu, setCategory, menu, setUser }) => {
                     label="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    onKeyDown={handleEnterKey}
                     required
                   />
                 </Grid>
@@ -109,6 +117,7 @@ const Signup = ({ setMenu, setCategory, menu, setUser }) => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={handleEnterKey}
                     required
                   />
                 </Grid>
@@ -119,6 +128,7 @@ const Signup = ({ setMenu, setCategory, menu, setUser }) => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleEnterKey}
                     required
                   />
                 </Grid>

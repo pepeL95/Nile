@@ -139,11 +139,13 @@ module.exports = class ProductHandler {
     name,
     uname,
     rating,
-    verified
+    verified,
+    imageurl
   ) {
-    if (!id) id = 'P' + String(this.getRandomInt(0, 10000))
+    if (!id) id = "P" + String(this.getRandomInt(0, 10000))
     const parsed = JSON.parse(json)
     let response = {}
+
     if (!verified)
       return {
         status: -1,
@@ -170,7 +172,9 @@ module.exports = class ProductHandler {
         rating: rating,
         verified: verified,
       },
+      imageurl: imageurl,
     }
+    console.log(newProduct.imageurl)
 
     let exists = {}
     parsed.filter((e, i) => {

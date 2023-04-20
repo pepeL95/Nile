@@ -26,10 +26,26 @@ module.exports = class UserHandler {
     }
   }
 
+  // User Login
+  logIn(json, username, password) {
+    const parsedJson = JSON.parse(json)
+    const user = parsedJson.filter(
+      (e) => e.username === username && e.password === password
+    )
+    if (user.length) {
+      return user[0]
+    } else
+      return {
+        status: 100,
+        message: "User not found",
+      }
+  }
+
   // retrievals
   getAllUsers(json) {
     const parsed = JSON.parse(json)
     const user = parsed.filter((e) => e)
+    if (user.length === 0) return {status: 100, message: 'Empty Users Database'}
     return user
   }
 
@@ -70,25 +86,10 @@ module.exports = class UserHandler {
     if (parsed.length === 0)
       return {
         status: 100,
-        message: "Empty database",
+        message: "No filters matching rating criteria",
       }
 
     return parsed
-  }
-
-  logIn(json, username, password) {
-    const parsedJson = JSON.parse(json)
-    const user = parsedJson.filter(
-      (e) => e.username === username && e.password === password
-    )
-    if (user.length) {
-      console.log(user)
-      return user[0]
-    } else
-      return {
-        status: 100,
-        message: "User not found",
-      }
   }
 
   filterByItemsSold(json, descending, threshhold) {
@@ -101,7 +102,7 @@ module.exports = class UserHandler {
     if (parsed.length === 0)
       return {
         status: 100,
-        message: "Empty database",
+        message: "No filters matching items_sold criteria",
       }
 
     return parsed
@@ -117,7 +118,7 @@ module.exports = class UserHandler {
     if (data.length === 0)
       return {
         status: 100,
-        message: "Empty database",
+        message: "No filters matching verified criteria",
       }
 
     return data
@@ -232,6 +233,8 @@ module.exports = class UserHandler {
       }
     }
 
+    
+
     // update json file
     writeFile(this.db, JSON.stringify(parsed, null, 2), (e) => {
       if (e) {
@@ -247,6 +250,48 @@ module.exports = class UserHandler {
       response = {
         status: 200,
         message: "OK Updated verification",
+      }
+
+    return response
+  }
+
+
+  updateImageUrl(json, uname, imageurl) {
+    const parsed = JSON.parse(json)
+    let flag = true
+    let response = {}
+    // update verified
+    parsed.forEach((e) => {
+      if (e.username === uname) {
+        e.imageurl = imageurl
+        flag = false
+      }
+    })
+
+    if (flag) {
+      return {
+        status: 100,
+        message: "User not found",
+      }
+    }
+
+    
+
+    // update json file
+    writeFile(this.db, JSON.stringify(parsed, null, 2), (e) => {
+      if (e) {
+        response = {
+          status: -1,
+          message: "Failed to write updated data to file",
+        }
+        return
+      }
+    })
+
+    if (Object.keys(response).length === 0)
+      response = {
+        status: 200,
+        message: "OK Updated imageurl",
       }
 
     return response

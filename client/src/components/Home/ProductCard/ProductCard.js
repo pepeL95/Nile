@@ -7,18 +7,25 @@ import Avatar from "@mui/material/Avatar"
 import { Typography } from "@mui/material"
 import { getInitials } from "../../../utils/helperFunctions/helper"
 
-const ProductCard = ({ name, username, price, productName, onClick }) => {
+const ProductCard = ({
+  imageUrl,
+  name,
+  username,
+  price,
+  productName,
+  onClick,
+}) => {
   return (
     <div className="Category-main-container" onClick={onClick}>
       <div className="up-div">
-        {/* Main Image */}
         <img
-          src="https://source.unsplash.com/random"
-          alt={"User Picture"}
+          src={`${imageUrl}`}
+          alt={"Product Picture"}
           loading="lazy"
-          style={{ width: "100%" }}
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
       </div>
+
       <div className="bottom-div">
         <nav aria-label="secondary mailbox folders">
           <List disablePadding>
@@ -33,7 +40,9 @@ const ProductCard = ({ name, username, price, productName, onClick }) => {
               />
               <Avatar> {getInitials(name)} </Avatar>
             </ListItem>
+
             <Divider variant="middle" />
+
             <ListItem>
               <ListItemText primary="Price" secondary={`$${price}`} />
             </ListItem>
