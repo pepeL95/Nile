@@ -9,6 +9,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney"
 import LogoutIcon from '@mui/icons-material/Logout';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { getInitials } from "../../utils/helperFunctions/helper"
 
 
 const TopBar = ({ user, menu, setMenu, setCategory, category}) => {
@@ -23,7 +24,7 @@ const TopBar = ({ user, menu, setMenu, setCategory, category}) => {
             setCategory(productCategory.misc)
           }}
         >
-          <Avatar>N</Avatar>
+          <Avatar>{user ? getInitials(user.name) : "N"}</Avatar>
         </IconButton>
       </Tooltip>
 

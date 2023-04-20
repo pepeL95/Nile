@@ -22,10 +22,12 @@ import {
   Divider,
 } from "@mui/material"
 
-const Messages = ({ seller, setMenu, setCategory, menu, administrator }) => {
+const Messages = ({ user, seller, setMenu, setCategory, menu, administrator }) => {
   const [otherParties, setOtherParties] = useState([])
   const [otherPartyName, setOtherPartyName] = useState("Support")
   const [messages, setMessages] = useState([])
+  console.log(user)
+  console.log(getInitials(user.name))
 
   useEffect(() => {
     // initial data fetch
@@ -139,6 +141,7 @@ const Messages = ({ seller, setMenu, setCategory, menu, administrator }) => {
         </Box>
 
         <ChatBox
+          user={user}
           currentOtherParty={otherPartyName}
           messages={messages}
           setMessages={setMessages}
@@ -148,9 +151,9 @@ const Messages = ({ seller, setMenu, setCategory, menu, administrator }) => {
   )
 }
 
-const ChatBox = ({ currentOtherParty, messages, setMessages }) => {
+const ChatBox = ({ user, currentOtherParty, messages, setMessages }) => {
   const messageElement = useRef(null)
-
+  console.log("test", currentOtherParty)
   useEffect(() => {
     // handles scroll to bottom when new message is entered
     if (messageElement) {
@@ -195,9 +198,11 @@ const ChatBox = ({ currentOtherParty, messages, setMessages }) => {
         {messages.map((e, i) => {
           return (
             <ChatBubble
+              user={user}
               key={i}
               self={e.self}
-              username={e.self ? "Name Lastname" : currentOtherParty}
+              username={e.self ? user.name : currentOtherParty}
+              other={currentOtherParty}
               text={e.text}
             />
           )
@@ -226,7 +231,7 @@ const ChatBox = ({ currentOtherParty, messages, setMessages }) => {
   )
 }
 
-const ChatBubble = ({ text, username = "UNKNOWN" }) => {
+const ChatBubble = ({ user, text, self, username = "UNKNOWN", other}) => {
   return (
     <>
       <List disablePadding>
@@ -235,7 +240,7 @@ const ChatBubble = ({ text, username = "UNKNOWN" }) => {
           sx={{ padding: "10px", paddingLeft: "5vw" }}
         >
           <Avatar sx={{ position: "absolute", left: "4vw", top: "6px" }}>
-            UK
+            {self ? getInitials(user?.name) : getInitials(other)}
           </Avatar>
           <ListItemText
             sx={{ ml: "50px", wordWrap: "break-word" }}

@@ -29,8 +29,7 @@ const Sell = ({ user, postingObj = undefined, setAction }) => {
     "Like New",
     "Good",
     "Fair",
-    "It Is What It Is",
-    "Pretty Busted ngl",
+    "Poor"
   ]
 
   let objectToSubmit = {
@@ -210,7 +209,7 @@ const Sell = ({ user, postingObj = undefined, setAction }) => {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ display: "flex", flexDirection: "row", justifyContent:"center" }}
           >
             {Object.values(productCategory).map((e, i) => {
               return (
@@ -231,7 +230,7 @@ const Sell = ({ user, postingObj = undefined, setAction }) => {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ display: "flex", flexDirection: "row", justifyContent:"center"}}
           >
             {conditions.map((e, i) => {
               return <FormControlLabel

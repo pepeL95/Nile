@@ -418,5 +418,20 @@
       "verified": true
     },
     "imageurl": "https://i.ibb.co/mGBTQtG/3e460c44975b.jpg"
+  },
+  {
+    "id": "P7759",
+    "product name": "Sony Headphones",
+    "description": "Sony WH-1000XM4 Headphones",
+    "category": "Electronics",
+    "price": 349.99,
+    "condition": "Like New",
+    "seller": {
+      "name": "Vu Le",
+      "username": "vule2003",
+      "rating": 2,
+      "verified": true
+    },
+    "imageurl": "https://i.ibb.co/FWS9VsF/742cce00d4e4.jpg"
   }
 ]

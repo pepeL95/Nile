@@ -41,6 +41,7 @@ function App() {
       )}
       {menu === menus.messages && (
         <Messages
+          user={user}
           menu={menu}
           setMenu={setMenu}
           setCategory={setCategory}

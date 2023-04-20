@@ -312,8 +312,9 @@
     "verified": true,
     "email": "vule@gmail.com",
     "items_sold": 0,
-    "password": "password12345",
-    "administrator": true
+    "password": "123",
+    "administrator": true,
+    "imageurl": "https://i.ibb.co/pyXX8wz/16bcdf3e4efe.jpg"
   },
   {
     "name": "Jose Lopez",
@@ -333,6 +334,6 @@
     "email": "vu@gmail.com",
     "items_sold": 0,
     "password": "123",
-    "imageurl": "https://i.ibb.co/fvCbFsx/8b424ab063e8.jpg"
+    "imageurl": "https://i.ibb.co/pyXX8wz/16bcdf3e4efe.jpg"
   }
 ]

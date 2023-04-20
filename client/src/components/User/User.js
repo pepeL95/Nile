@@ -280,22 +280,23 @@ const User = ({ user, setMenu, setCategory, menu, setUser, administrator }) => {
         sx={{ mt: "10vh" }}
         className={action ? "user-info-blur" : ""}
       >
-        <Grid item xs={8} sx={{ height: "90vh" }}>
-          {imageUrl ?
-          <img
-            src={`${imageUrl}`}
-            alt={"User Picture"}
-            loading="lazy"
-            style={{ width: "35vw" }}
-          />
-          : <img
-          src={user?.imageurl ? `${user.imageurl}` : "https://source.unsplash.com/random"}
-          alt={"User Picture"}
-          loading="lazy"
-          style={{ width: "35vw" }}/>
-          }         
-          <Button variant="contained" component="label"onChange={handleFileUpload}>Upload Image<input type="file" hidden/></Button>
-
+        <Grid item xs={8}>
+            <img
+              src={imageUrl ? imageUrl : "https://source.unsplash.com/random"}
+              alt={"User Picture"}
+              loading="lazy"
+              style={{ width: "30vw", height: "100%"}}
+            />
+          <Grid item>
+            <Button
+              variant="contained"
+              component="label"
+              onChange={handleFileUpload}
+            >
+              Upload Image
+              <input type="file" hidden />
+            </Button>
+          </Grid>
         </Grid>
 
         <Grid item>
